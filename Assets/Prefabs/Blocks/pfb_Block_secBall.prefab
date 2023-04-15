@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7656109451280607032}
   - component: {fileID: 7656109451280607031}
   - component: {fileID: 9031157369843677302}
-  - component: {fileID: 5193304941239588903}
+  - component: {fileID: 8440396032199532870}
   m_Layer: 6
   m_Name: pfb_Block_secBall
   m_TagString: Block
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5193304941239588903
+--- !u!114 &8440396032199532870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7656109451280607030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff83b6f3a19fcc24991b0c3ce389a1a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0450d3edcbcc08349b2d261e88db0f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1

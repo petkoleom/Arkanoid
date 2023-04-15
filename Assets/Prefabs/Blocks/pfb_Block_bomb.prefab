@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6020945651231879201}
   - component: {fileID: 4964190645941071712}
   - component: {fileID: 6286564248032130734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pfb_Block_bomb
   m_TagString: Block
   m_Icon: {fileID: 0}

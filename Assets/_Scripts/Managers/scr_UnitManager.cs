@@ -23,6 +23,18 @@ namespace darkvoyagestudios
             ball.transform.parent = player.transform;
         }
 
+        public void NewBall()
+        {
+            var newBall = Instantiate(scr_GameAssets.i.ballPrefab, ball.transform.position, Quaternion.identity);
+            //newBall.GetComponent<scr_Ball>().NewBall();
+        }
+
+        public void MetalBall()
+        {
+            ball.GetComponent<scr_Ball>().MetalBall();
+
+        }
+
         public void ResetPositions()
         {
             ball.transform.parent = player.transform;

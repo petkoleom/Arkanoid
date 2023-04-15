@@ -11,6 +11,8 @@ namespace darkvoyagestudios
     {
         Rigidbody2D rb;
 
+        public bool metal = false;
+
         [SerializeField]
         float speed;
 
@@ -21,18 +23,40 @@ namespace darkvoyagestudios
 
         private int consecutiveWallHits = 0;
 
+        [SerializeField]
+        private LayerMask blocks;
+
 
         private void Start()
         {
             rb = GetComponent<Rigidbody2D>();
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
- 
+           
         }
 
         private void Update()
         {
 
             rb.velocity = speed * (rb.velocity.normalized);
+
+            RaycastCheck();
+        }
+
+        private void RaycastCheck()
+        {
+            Collider2D hit = Physics2D.OverlapArea(transform.position, rb.velocity, blocks);
+
+
+
+            if(hit.GetComponent<Collider>() != null)
+            {
+                print(hit.GetComponent<Collider>().name);
+                if (hit.GetComponent<Collider>().tag == "Block")
+                {
+                    print("hit");
+                    hit.GetComponent<Collider>().GetComponent<int_Block>().TakeDamage(damage);
+                }
+            }
         }
 
         public void ResetBall()
@@ -40,6 +64,17 @@ namespace darkvoyagestudios
             SetFree(false);
             rb.velocity = 0 * (rb.velocity.normalized);
             consecutiveWallHits = 0;
+        }
+
+        public void NewBall()
+        {
+            float randomOffset = UnityEngine.Random.Range(0, 0.3f);
+            rb.velocity += new Vector2(randomOffset, randomOffset);
+        }
+
+        public void MetalBall()
+        {
+            metal = true;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -88,7 +123,10 @@ namespace darkvoyagestudios
             rb.velocity = dir;
         }
 
-
+        private void OnDrawGizmos()
+        {
+            Debug.DrawRay(transform.position, rb.velocity, Color.green);
+        }
 
 
     }

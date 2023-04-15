@@ -17,6 +17,7 @@ namespace darkvoyagestudios
         [SerializeField]
         private BlockType[] blockTypes;
 
+        LinkedList<GameObject> blockList = new LinkedList<GameObject>();
 
         public void GenerateBlocks()
         {
@@ -36,6 +37,7 @@ namespace darkvoyagestudios
 
                     GameObject blockGO = Instantiate(block, new Vector2(1.5f * (j - 5), .75f * i), Quaternion.identity);
                     blockGO.transform.SetParent(transform, false);
+                    blockList.AddLast(blockGO);
                 }     
             }
         }
@@ -47,6 +49,15 @@ namespace darkvoyagestudios
                 scr_GameManager.Instance.LevelDone();
                 enabled = false;
             }
+        }
+
+        public void MetalBall()
+        {
+            foreach (GameObject block in blockList)
+            {
+                block.GetComponent<Collider2D>().isTrigger = true;
+            }
+
         }
 
 
