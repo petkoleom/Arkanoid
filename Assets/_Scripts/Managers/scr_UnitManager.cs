@@ -18,7 +18,6 @@ namespace darkvoyagestudios
 
         public void Spawn()
         {
-            print("test");
             player = Instantiate(scr_GameAssets.i.playerPrefab, spawn, Quaternion.identity);
             ball = Instantiate(scr_GameAssets.i.ballPrefab, spawn + ballOffset, Quaternion.identity);
             ball.transform.parent = player.transform;
@@ -34,6 +33,7 @@ namespace darkvoyagestudios
         public void Despawn()
         {
             Destroy(player);
+            Destroy(ball);
         }
     }
 }

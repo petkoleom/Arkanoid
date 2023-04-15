@@ -15,6 +15,8 @@ namespace darkvoyagestudios
         int maxLives = 3;
         int lives;
 
+        int level = 1;
+
 
         public static event Action<GameState> OnBeforeStateChanged;
         public static event Action<GameState> OnAfterStateChanged;
@@ -63,13 +65,21 @@ namespace darkvoyagestudios
             
         }
 
+        public void LevelDone()
+        {
+            ChangeState(3);
+        }
+
 
         private void HandleStarting()
         {
             
             lives = maxLives;
             scr_UIManager.Instance.OpenGame();
+            scr_UIManager.Instance.UpdateUI(level, lives);
             scr_UnitManager.Instance.Spawn();
+            scr_BlockManager.Instance.GenerateBlocks();
+            scr_BlockManager.Instance.enabled = true;
             ChangeState(2);
         }
 
@@ -93,6 +103,7 @@ namespace darkvoyagestudios
         private void HandleMenu()
         {
             Cursor.visible = true;
+            scr_BlockManager.Instance.enabled = false;
             scr_UIManager.Instance.OpenMenu();
         }
 
@@ -103,9 +114,16 @@ namespace darkvoyagestudios
             scr_UIManager.Instance.OpenPause();
         }
 
+        public void LoadNextLevel()
+        {
+            level++;
+            scr_UIManager.Instance.UpdateUI(level, lives);
+        }
+
         public void LostLife()
         {
             lives--;
+            scr_UIManager.Instance.UpdateUI(level, lives);
             scr_UnitManager.Instance.ResetPositions();
             if( lives == 0 )
             {

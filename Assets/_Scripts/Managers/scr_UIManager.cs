@@ -18,8 +18,10 @@ namespace darkvoyagestudios
         [SerializeField]
         GameObject pause;
 
-
-
+        [SerializeField]
+        TMPro.TMP_Text level;
+        [SerializeField]
+        TMPro.TMP_Text lives;
 
 
 
@@ -31,8 +33,10 @@ namespace darkvoyagestudios
             pause.SetActive(false);
         }
 
-        public void UpdateScore(int l, int r)
+        public void UpdateUI(int level, int lives)
         {
+            this.level.text = "Level: " + level.ToString();
+            this.lives.text = "Lives: " + lives.ToString();
         }
 
         public void OpenMenu()

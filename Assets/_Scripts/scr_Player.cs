@@ -46,7 +46,10 @@ namespace darkvoyagestudios
 
         public void OnLaunch(InputValue value)
         {
-            ball.Launch();
+            if (!ball.isFree()){
+                ball.Launch();
+            }
+            
         }
     }
 }
