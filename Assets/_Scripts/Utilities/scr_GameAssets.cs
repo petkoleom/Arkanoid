@@ -25,7 +25,7 @@ namespace darkvoyagestudios
         public GameObject blockPrefab;
 
         [Header("VFX")]
-        public GameObject impact;
+        public GameObject explosion;
         public GameObject stain;
 
         [Header("SFX")]

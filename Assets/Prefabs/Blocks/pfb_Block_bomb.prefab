@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6020945651231879201}
   - component: {fileID: 4964190645941071712}
   - component: {fileID: 6286564248032130734}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: pfb_Block_bomb
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -124,4 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2c0a0ee1a829845ab4316414e04356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 2.5
+  blocks:
+    serializedVersion: 2
+    m_Bits: 64

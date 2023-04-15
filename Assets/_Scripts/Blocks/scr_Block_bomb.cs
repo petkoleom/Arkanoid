@@ -10,28 +10,28 @@ namespace darkvoyagestudios
     {
 
         [SerializeField]
-        int radius = 3;
+        float radius = 2.5f;
+
+        [SerializeField]
+        private LayerMask blocks;
 
         public void TakeDamage(int dmg)
         {
 
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius, 6);
-            foreach (Collider hitCollider in hitColliders)
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, radius, blocks);
+
+            Instantiate(scr_GameAssets.i.explosion, transform.position, Quaternion.identity);
+            
+            foreach (Collider2D hitCollider in hitColliders)
             {
-                print(hitColliders.Length);
+                
                 if (hitCollider.tag == "Block")
                 {
-                    print("hit");
+
                     hitCollider.gameObject.GetComponent<int_Block>().TakeDamage(5);
                 }
             }
             Destroy(gameObject);
-        }
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.red;
-            //Use the same vars you use to draw your Overlap Sphere to draw your Wire Sphere.
-            Gizmos.DrawWireSphere(transform.position, radius);
         }
 
     }

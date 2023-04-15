@@ -47,6 +47,6 @@ MonoBehaviour:
   playerPrefab: {fileID: 3518572593414613617, guid: 6d0e8275f19068345bd999ff2c7e6cb8, type: 3}
   ballPrefab: {fileID: 6989770947612469214, guid: b2304043a4df54a479a9bf6ac97b2eb2, type: 3}
   blockPrefab: {fileID: 2216464572813639667, guid: a41610daedcf5ea44835eb9c523be80c, type: 3}
-  impact: {fileID: 0}
+  explosion: {fileID: 3407867304069325385, guid: cb77068c579d42049b9d9f806508bef1, type: 3}
   stain: {fileID: 0}
   hit: {fileID: 0}
