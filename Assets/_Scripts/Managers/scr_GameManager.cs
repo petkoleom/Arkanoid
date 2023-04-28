@@ -67,25 +67,28 @@ namespace darkvoyagestudios
 
         public void LevelDone()
         {
-            ChangeState(3);
+            level++;
+            ChangeState(1);
         }
 
 
         private void HandleStarting()
         {
             
-            lives = maxLives;
+            
             scr_UIManager.Instance.OpenGame();
             scr_UIManager.Instance.UpdateUI(level, lives);
+            scr_UnitManager.Instance.Despawn();
             scr_UnitManager.Instance.Spawn();
             scr_BlockManager.Instance.GenerateBlocks();
-            scr_BlockManager.Instance.enabled = true;
+            
             ChangeState(2);
         }
 
 
         private void HandlePlaying()
         {
+            scr_BlockManager.Instance.enabled = true;
             Cursor.visible = false;
             Time.timeScale = 1;
             scr_UIManager.Instance.OpenGame();
@@ -105,6 +108,8 @@ namespace darkvoyagestudios
             Cursor.visible = true;
             scr_BlockManager.Instance.enabled = false;
             scr_UIManager.Instance.OpenMenu();
+            lives = maxLives;
+            level = 1;
         }
 
         private void HandlePause()
@@ -125,9 +130,11 @@ namespace darkvoyagestudios
             lives--;
             scr_UIManager.Instance.UpdateUI(level, lives);
             scr_UnitManager.Instance.ResetPositions();
+            scr_BlockManager.Instance.ResetEffects();
             if( lives == 0 )
             {
                 ChangeState(3);
+                lives = maxLives;
             }
         }
 

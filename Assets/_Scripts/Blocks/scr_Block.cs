@@ -22,9 +22,20 @@ namespace darkvoyagestudios
             health -= dmg;
             if(health <= 0)
             {
-                
-                Destroy(gameObject);
+                Remove();
             }
+        }
+
+        public void OnTriggerEnter2D(Collider2D other)
+        {
+            Remove();
+        }
+
+        private void Remove()
+        {
+            scr_AudioManager.Instance.PlaySound(scr_GameAssets.i.hitSFX);
+            scr_BlockManager.Instance.blockList.Remove(gameObject);
+            Destroy(gameObject);
         }
     }
 }

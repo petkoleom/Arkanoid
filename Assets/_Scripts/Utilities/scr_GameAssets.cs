@@ -25,11 +25,11 @@ namespace darkvoyagestudios
         public GameObject blockPrefab;
         
         [Header("VFX")]
-        public GameObject explosion;
-        public GameObject stain;
+        public GameObject explosionVFX;
 
         [Header("SFX")]
-        public AudioClip hit;
+        public AudioClip hitSFX;
+        public AudioClip explosionSFX;
 
 
     }

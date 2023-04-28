@@ -11,6 +11,18 @@ namespace darkvoyagestudios
 
             scr_UnitManager.Instance.NewBall();
 
+            Remove();
+        }
+
+        public void OnTriggerEnter2D(Collider2D other)
+        {
+            Remove();
+        }
+
+        private void Remove()
+        {
+            scr_AudioManager.Instance.PlaySound(scr_GameAssets.i.hitSFX);
+            scr_BlockManager.Instance.blockList.Remove(gameObject);
             Destroy(gameObject);
         }
     }

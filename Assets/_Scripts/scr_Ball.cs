@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 namespace darkvoyagestudios
 {
@@ -39,25 +40,10 @@ namespace darkvoyagestudios
 
             rb.velocity = speed * (rb.velocity.normalized);
 
-            RaycastCheck();
+
         }
 
-        private void RaycastCheck()
-        {
-            Collider2D hit = Physics2D.OverlapArea(transform.position, rb.velocity, blocks);
 
-
-
-            if(hit.GetComponent<Collider>() != null)
-            {
-                print(hit.GetComponent<Collider>().name);
-                if (hit.GetComponent<Collider>().tag == "Block")
-                {
-                    print("hit");
-                    hit.GetComponent<Collider>().GetComponent<int_Block>().TakeDamage(damage);
-                }
-            }
-        }
 
         public void ResetBall()
         {
@@ -96,6 +82,7 @@ namespace darkvoyagestudios
 
             else if (collision.transform.tag == "Block")
             {
+                
                 collision.gameObject.GetComponent<int_Block>().TakeDamage(damage);
                 consecutiveWallHits = 0;
             }
@@ -105,7 +92,8 @@ namespace darkvoyagestudios
                 consecutiveWallHits++;
                 if(consecutiveWallHits == 6) 
                 {
-                    ResetBall();
+                    float randomOffset = UnityEngine.Random.Range(0, 0.3f);
+                    rb.velocity += new Vector2(randomOffset, randomOffset);
                 }
             }
         }
@@ -123,10 +111,7 @@ namespace darkvoyagestudios
             rb.velocity = dir;
         }
 
-        private void OnDrawGizmos()
-        {
-            Debug.DrawRay(transform.position, rb.velocity, Color.green);
-        }
+        
 
 
     }
